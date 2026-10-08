@@ -1,39 +1,19 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-    <title>Student Details</title> 
-</head> 
-<body> 
-    <h1>Student Details</h1> 
-    
-    <p> 
-        <strong>ID:</strong> 
-        {{ $student->id }} 
-    </p> 
-    <p> 
-        <strong>Name:</strong> 
-        {{ $student->name }} 
-    </p> 
-    <p> 
-        <strong>Email:</strong> 
-        {{ $student->email }} 
-    </p> 
-    <p> 
-        <strong>Phone:</strong> 
-        {{ $student->phone }} 
-    </p> 
-    <p> 
-        <strong>Address:</strong> 
-        {{ $student->address ?? 'N/A' }} 
-    </p> 
-    <p> 
-        <strong>Date of Birth:</strong> 
-        {{ $student->date_of_birth ?? 'N/A' }} 
-    </p> 
+@extends('layouts.app')
 
-    <br>
-    <a href="/students/{{ $student->id }}/edit">Edit Student</a> 
-    <br><br> 
-    <a href="/students">Back to Students</a> 
-</body> 
-</html>
+@section('title', 'Student Details')
+
+@section('content')
+    <h1>Student Details</h1>
+
+    <p><strong>ID:</strong> {{ $student->id }}</p>
+    <p><strong>Name:</strong> {{ $student->name }}</p>
+    <p><strong>Email:</strong> {{ $student->email }}</p>
+    <p><strong>Phone:</strong> {{ $student->phone }}</p>
+    <p><strong>Address:</strong> {{ $student->address ?? 'N/A' }}</p>
+    <p><strong>Date of Birth:</strong> {{ $student->date_of_birth?->format('d M Y') ?? 'N/A' }}</p>
+    <p><strong>Age:</strong> {{ $student->age ?? 'Not available' }}</p>
+
+    <a href="{{ route('students.edit', $student) }}">Edit Student</a>
+    <br><br>
+    <a href="{{ route('students.index') }}">Back to Students</a>
+@endsection
